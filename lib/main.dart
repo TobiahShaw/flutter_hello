@@ -9,7 +9,12 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Home(),
-      theme: ThemeData(primarySwatch: Colors.yellow),
+      theme: ThemeData(
+          primarySwatch: Colors.yellow,
+          // 水波纹颜色
+          splashColor: Colors.white70,
+          // 按下颜色
+          highlightColor: Color.fromRGBO(255, 255, 255, 0.5)),
     );
   }
 }
