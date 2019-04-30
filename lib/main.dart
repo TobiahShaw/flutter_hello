@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'demo/listview_demo.dart';
+import 'demo/drawer_demo.dart';
 
 void main() => runApp(App());
 
@@ -27,11 +27,6 @@ class Home extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            tooltip: "natvigation",
-            onPressed: () => debugPrint("natvigation onPressed"),
-          ),
           title: Text("Tobiah"),
           elevation: 0.0,
           actions: <Widget>[
@@ -72,6 +67,7 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
+        drawer: DrawerDemo(),
       ),
     );
   }
