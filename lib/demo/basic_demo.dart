@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class BasicDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RichTextDemo();
+    return ContainerDemo();
   }
 }
 
@@ -29,28 +29,89 @@ class RichTextDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: 'https://github.com/',
-        style: TextStyle(
-          color: Colors.deepPurpleAccent,
-          fontSize: 22.0,
-          fontStyle: FontStyle.italic,
-          fontWeight: FontWeight.w100,
+          text: 'https://github.com/',
+          style: TextStyle(
+            color: Colors.deepPurpleAccent,
+            fontSize: 22.0,
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w100,
+          ),
+          children: [
+            // 同一个控件，添加不同样式的文字，使用TextSpan的children，其children也是TextSpan，默认样式和其父一致
+            TextSpan(text: 'TobiahShaw/'),
+            TextSpan(
+                text: 'flutter_hello',
+                style: TextStyle(
+                    fontSize: 17.0,
+                    color: Colors.grey,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.normal)),
+          ]),
+    );
+  }
+}
+
+class ContainerDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // container 占据尽可能多的的空间，所以整个都变色了
+    return Container(
+      // color: Colors.grey,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: NetworkImage('https://resources.ninghao.org/images/childhood-in-a-picture.jpg'),
+          alignment: Alignment.bottomCenter,
+          repeat: ImageRepeat.noRepeat,
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(Colors.indigoAccent[400].withOpacity(0.5), BlendMode.hardLight)
         ),
-        children: [
-          // 同一个控件，添加不同样式的文字，使用TextSpan的children，其children也是TextSpan，默认样式和其父一致
-          TextSpan(
-            text: 'TobiahShaw/'
-          ),
-          TextSpan(
-            text: 'flutter_hello',
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Colors.grey,
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.normal
-            )
-          ),
-        ]
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            child: Icon(
+              Icons.pool,
+              size: 32.0,
+              color: Colors.white,
+            ),
+            // color: Color.fromRGBO(3, 54, 255, 1.0),
+            padding: EdgeInsets.all(16.0),
+            margin: EdgeInsets.all(8.0),
+            width: 90.0,
+            height: 90.0,
+            decoration: BoxDecoration(
+                // 不能和外面的color属性共用
+                color: Color.fromRGBO(3, 54, 255, 1.0),
+                border: Border.all(
+                  color: Colors.indigoAccent,
+                  width: 3.0,
+                  style: BorderStyle.solid,
+                ),
+                // BoxShape.circle 不可和 borderRadius 一起使用
+                // borderRadius: BorderRadius.circular(16.0),
+                boxShadow: [
+                  // 可多个叠加
+                  BoxShadow(
+                      offset: Offset(0.0, 16.0),
+                      color: Color.fromRGBO(16, 20, 188, 1.0),
+                      blurRadius: 25.0,
+                      spreadRadius: -9.0),
+                  BoxShadow(
+                      offset: Offset(16.0, 0.0),
+                      color: Color.fromRGBO(16, 20, 188, 1.0),
+                      blurRadius: 25.0,
+                      spreadRadius: -9.0),
+                ],
+                // BoxShape.circle 不可和 borderRadius 一起使用
+                shape: BoxShape.circle,
+                // 渐变效果
+                gradient: LinearGradient(colors: [
+                  Color.fromRGBO(7, 102, 255, 1.0),
+                  Color.fromRGBO(3, 28, 128, 1.0),
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          )
+        ],
       ),
     );
   }
