@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class BasicDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RichTextDemo();
+  }
+}
 
-  final TextStyle _textStyle = TextStyle(
-    fontSize: 16.0
-  );
+class TextDemo extends StatelessWidget {
+  final TextStyle _textStyle = TextStyle(fontSize: 16.0);
 
   final String _author = "李白";
   final String _title = "将进酒";
-
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -17,6 +20,38 @@ class BasicDemo extends StatelessWidget {
       style: _textStyle,
       maxLines: 3,
       overflow: TextOverflow.ellipsis,
+    );
+  }
+}
+
+class RichTextDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        text: 'https://github.com/',
+        style: TextStyle(
+          color: Colors.deepPurpleAccent,
+          fontSize: 22.0,
+          fontStyle: FontStyle.italic,
+          fontWeight: FontWeight.w100,
+        ),
+        children: [
+          // 同一个控件，添加不同样式的文字，使用TextSpan的children，其children也是TextSpan，默认样式和其父一致
+          TextSpan(
+            text: 'TobiahShaw/'
+          ),
+          TextSpan(
+            text: 'flutter_hello',
+            style: TextStyle(
+              fontSize: 17.0,
+              color: Colors.grey,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.normal
+            )
+          ),
+        ]
+      ),
     );
   }
 }
