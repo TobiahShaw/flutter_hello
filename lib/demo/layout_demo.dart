@@ -3,10 +3,19 @@ import 'package:flutter/material.dart';
 class LayoutDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        IconBadget(Icons.pool)
-      ],
+    // Row 部件内部横向排列, Column不间内部纵向排列, 借用了 css 的 flux box 的概念
+    return Container(
+      child: Row(
+        // 对于 Row 和 Column 主轴是不同的 Row 主轴是横向的, Column 中主轴是纵向的
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // 交叉轴 crossAxis 是和主轴垂直的, 可以用于该方向的对齐方式和拉伸(stretch)
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          IconBadget(Icons.pool),
+          IconBadget(Icons.beach_access, size: 64.0,),
+          IconBadget(Icons.airplanemode_active),
+        ],
+      ),
     );
   }
 }
