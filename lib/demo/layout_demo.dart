@@ -5,7 +5,45 @@ class LayoutDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     // Row 部件内部横向排列, Column不间内部纵向排列, 借用了 css 的 flux box 的概念
     return Container(
-      child: SizedBoxDemo(),
+      child: StackDemo(),
+    );
+  }
+}
+
+class StackDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // Stack 内的 widget 会叠加到一起
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Stack(
+        alignment: Alignment.topLeft,
+        children: <Widget>[
+          SizedBox(
+            width: 200.0,
+            height: 300.0,
+            child: Container(
+              alignment: Alignment(1.0, -0.8),
+              child: Icon(Icons.ac_unit, color: Colors.white, size: 32.0),
+              decoration: BoxDecoration(
+                  color: Color.fromRGBO(3, 53, 255, 1.0),
+                  borderRadius: BorderRadius.circular(8.0)),
+            ),
+          ),
+          SizedBox(
+            child: Container(
+              child: Icon(Icons.brightness_2, color: Colors.white, size: 32.0),
+              decoration: BoxDecoration(
+                  color: Color.fromRGBO(93, 93, 255, 1.0),
+                  borderRadius: BorderRadius.circular(8.0)),
+            ),
+          ),
+        ],
+      ),
+        ],
+      )
     );
   }
 }
