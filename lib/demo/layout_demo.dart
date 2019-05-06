@@ -5,7 +5,26 @@ class LayoutDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     // Row 部件内部横向排列, Column不间内部纵向排列, 借用了 css 的 flux box 的概念
     return Container(
-      child: StackDemo(),
+      child: AspectRadioDemo(),
+    );
+  }
+}
+
+class AspectRadioDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 3.0 / 2.0,
+            child: Container(
+              color: Color.fromRGBO(3, 54, 255, 1.0),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
