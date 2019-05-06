@@ -14,37 +14,69 @@ class StackDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // Stack 内的 widget 会叠加到一起
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Stack(
-        alignment: Alignment.topLeft,
-        children: <Widget>[
-          SizedBox(
-            width: 200.0,
-            height: 300.0,
-            child: Container(
-              alignment: Alignment(1.0, -0.8),
-              child: Icon(Icons.ac_unit, color: Colors.white, size: 32.0),
-              decoration: BoxDecoration(
+        // Stack 内的 widget 会叠加到一起
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Stack(
+          alignment: Alignment.topLeft,
+          children: <Widget>[
+            SizedBox(
+              width: 200.0,
+              height: 300.0,
+              child: Container(
+                alignment: Alignment(1.0, -0.8),
+                decoration: BoxDecoration(
                   color: Color.fromRGBO(3, 53, 255, 1.0),
-                  borderRadius: BorderRadius.circular(8.0)),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
             ),
-          ),
-          SizedBox(
-            child: Container(
-              child: Icon(Icons.brightness_2, color: Colors.white, size: 32.0),
-              decoration: BoxDecoration(
-                  color: Color.fromRGBO(93, 93, 255, 1.0),
-                  borderRadius: BorderRadius.circular(8.0)),
+            SizedBox(
+              width: 100.0,
+              height: 100.0,
+              child: Container(
+                child:
+                    Icon(Icons.brightness_2, color: Colors.white, size: 32.0),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(3, 54, 255, 1.0),
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(colors: [
+                    Color.fromRGBO(7, 102, 255, 1.0),
+                    Color.fromRGBO(3, 54, 255, 1.0),
+                  ]),
+                ),
+              ),
             ),
-          ),
-        ],
-      ),
-        ],
-      )
-    );
+            Positioned(
+              right: 20.0,
+              top: 20.0,
+              child: Icon(Icons.ac_unit, color: Colors.white, size: 16.0),
+            ),
+            Positioned(
+              right: 30.0,
+              top: 80.0,
+              child: Icon(Icons.ac_unit, color: Colors.white, size: 12.0),
+            ),
+            Positioned(
+              right: 50.0,
+              top: 140.0,
+              child: Icon(Icons.ac_unit, color: Colors.white, size: 14.0),
+            ),
+            Positioned(
+              right: 20.0,
+              top: 160.0,
+              child: Icon(Icons.ac_unit, color: Colors.white, size: 16.0),
+            ),
+            Positioned(
+              right: 80.0,
+              top: 200.0,
+              child: Icon(Icons.ac_unit, color: Colors.white, size: 16.0),
+            ),
+          ],
+        ),
+      ],
+    ));
   }
 }
 
