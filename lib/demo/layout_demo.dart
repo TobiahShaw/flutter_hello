@@ -5,8 +5,29 @@ class LayoutDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     // Row 部件内部横向排列, Column不间内部纵向排列, 借用了 css 的 flux box 的概念
     return Container(
-      child: AspectRadioDemo(),
+      child: ConstraineBoxDemo(),
     );
+  }
+}
+
+class ConstraineBoxDemo extends StatelessWidget {
+  // 可以限制内部的宽高
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: 200.0,
+              maxWidth: 200.0
+            ),
+            child: Container(
+              color: Color.fromRGBO(3, 54, 255, 1.0),
+            ),
+          )
+        ],
+      );
   }
 }
 
