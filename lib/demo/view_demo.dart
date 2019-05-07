@@ -1,9 +1,42 @@
 import 'package:flutter/material.dart';
+import '../model/post.dart';
 
 class ViewDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return PageViewDemo();
+    return PageViewBuildDemo();
+  }
+}
+
+class PageViewBuildDemo extends StatelessWidget {
+  Widget _pageItemBuilder(BuildContext context, int index) {
+    return Stack(
+      children: <Widget>[
+        SizedBox.expand(
+          child: Image.network(posts[index].imageUrl, fit: BoxFit.cover),
+        ),
+        Positioned(
+          bottom: 8.0,
+          left: 8.0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(posts[index].title,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(posts[index].author)
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView.builder(
+      itemCount: posts.length,
+      itemBuilder: _pageItemBuilder,
+    );
   }
 }
 
@@ -17,13 +50,12 @@ class PageViewDemo extends StatelessWidget {
       reverse: false,
       // 滚动方向
       scrollDirection: Axis.vertical,
-      onPageChanged: (current)=> debugPrint('page: $current'),
+      onPageChanged: (current) => debugPrint('page: $current'),
       controller: PageController(
-        initialPage: 1,
-        keepPage: true,
-        // 可视范围 1.0 占满
-        viewportFraction: 0.85
-      ),
+          initialPage: 1,
+          keepPage: true,
+          // 可视范围 1.0 占满
+          viewportFraction: 0.85),
       children: <Widget>[
         Container(
           color: Colors.brown[900],
