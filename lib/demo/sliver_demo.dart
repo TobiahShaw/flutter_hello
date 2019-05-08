@@ -7,6 +7,27 @@ class SliverDemo extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
+          SliverAppBar(
+            // title: Text('Tobiah'),
+            // 固定顶部
+            // pinned: true,
+            // 在任意位置向上滚动一点就显示
+            floating: true,
+            // app bar 可扩展区域
+            expandedHeight: 178.0,
+            // 可扩展内容
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(
+                'Tobiah Flutter',
+                style: TextStyle(
+                    fontSize: 15.0,
+                    // 文字间距
+                    letterSpacing: 3.0,
+                    fontWeight: FontWeight.w400),
+              ),
+              background: Image.network(posts[0].imageUrl, fit: BoxFit.cover,),
+            ),
+          ),
           // 在安全区域显示（状态栏不显示）
           SliverSafeArea(
             // 添加内边距
