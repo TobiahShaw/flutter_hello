@@ -15,10 +15,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NavigatorDemo(),
+      // home: NavigatorDemo(),
+      // 不使用home，使用初始路由
+      initialRoute: '/',
       // 通过名字路由
       routes: {
-        '/about':(context) => Page(title: 'about'),
+        '/': (context) => Home(),
+        '/about': (context) => Page(title: 'about'),
+        '/navigator': (context) => NavigatorDemo(),
       },
       theme: ThemeData(
           primarySwatch: Colors.yellow,
