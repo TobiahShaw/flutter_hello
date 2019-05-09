@@ -7,6 +7,7 @@ import 'demo/layout_demo.dart';
 import 'demo/view_demo.dart';
 import 'demo/sliver_demo.dart';
 import 'demo/navigator_demo.dart';
+import 'demo/form_demo.dart';
 
 void main() => runApp(App());
 
@@ -17,19 +18,21 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: NavigatorDemo(),
       // 不使用home，使用初始路由
-      initialRoute: '/',
+      initialRoute: '/form',
       // 通过名字路由
       routes: {
         '/': (context) => Home(),
         '/about': (context) => Page(title: 'about'),
         '/navigator': (context) => NavigatorDemo(),
+        '/form': (context) => FormDemo(),
       },
       theme: ThemeData(
           primarySwatch: Colors.yellow,
           // 水波纹颜色
           splashColor: Colors.white70,
           // 按下颜色
-          highlightColor: Color.fromRGBO(255, 255, 255, 0.5)),
+          highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
+          accentColor: Color.fromRGBO(3, 54, 255, 1.0)),
     );
   }
 }
