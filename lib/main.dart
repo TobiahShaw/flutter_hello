@@ -16,6 +16,10 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: NavigatorDemo(),
+      // 通过名字路由
+      routes: {
+        '/about':(context) => Page(title: 'about'),
+      },
       theme: ThemeData(
           primarySwatch: Colors.yellow,
           // 水波纹颜色
