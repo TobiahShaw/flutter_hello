@@ -12,9 +12,86 @@ class FormDemo extends StatelessWidget {
           padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[TextFieldDemo()],
+            children: <Widget>[RegistForm()],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class RegistForm extends StatefulWidget {
+  @override
+  _RegistFormState createState() => _RegistFormState();
+}
+
+class _RegistFormState extends State<RegistForm> {
+  final registerFormKey = GlobalKey<FormState>();
+  String username, password;
+  bool autovalidate = false;
+
+  void _submitRegisterForm() {
+    if (registerFormKey.currentState.validate()) {
+      registerFormKey.currentState.save();
+      debugPrint('username: $username, password: $password');
+    } else {
+      setState(() {
+        autovalidate = true;
+      });
+    }
+  }
+
+  String _validatorUseername(value) {
+    if (value.isEmpty) {
+      return 'username is required';
+    }
+    return null;
+  }
+
+  String _validatorPassword(value) {
+    if (value.isEmpty) {
+      return 'password is required';
+    }
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: registerFormKey,
+      child: Column(
+        children: <Widget>[
+          // 相当于在 FormField 中加入一个 TextField
+          TextFormField(
+            decoration: InputDecoration(labelText: 'username', helperText: ''),
+            onSaved: (value) => username = value,
+            validator: _validatorUseername,
+            autovalidate: autovalidate,
+          ),
+          TextFormField(
+            // 输入内容马赛克
+            obscureText: true,
+            decoration: InputDecoration(labelText: 'password', helperText: ''),
+            onSaved: (value) => password = value,
+            validator: _validatorPassword,
+            autovalidate: autovalidate,
+          ),
+          SizedBox(
+            height: 32.0,
+          ),
+          Container(
+            width: double.infinity,
+            child: RaisedButton(
+              color: Theme.of(context).accentColor,
+              child: Text(
+                'Register',
+                style: TextStyle(color: Colors.white),
+              ),
+              elevation: 0.0,
+              onPressed: _submitRegisterForm,
+            ),
+          )
+        ],
       ),
     );
   }
