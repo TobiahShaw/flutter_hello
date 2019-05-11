@@ -8,6 +8,7 @@ import 'demo/view_demo.dart';
 import 'demo/sliver_demo.dart';
 import 'demo/navigator_demo.dart';
 import 'demo/form_demo.dart';
+import 'demo/material-components.dart';
 
 void main() => runApp(App());
 
@@ -18,13 +19,14 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: NavigatorDemo(),
       // 不使用home，使用初始路由
-      initialRoute: '/form',
+      initialRoute: '/mdc',
       // 通过名字路由
       routes: {
         '/': (context) => Home(),
         '/about': (context) => Page(title: 'about'),
         '/navigator': (context) => NavigatorDemo(),
         '/form': (context) => FormDemo(),
+        '/mdc': (context) => MaterialComponents(),
       },
       theme: ThemeData(
           primarySwatch: Colors.yellow,
