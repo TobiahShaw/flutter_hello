@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'button_demo.dart';
+import 'floating_demo_button_demo.dart';
 
 class MaterialComponents extends StatelessWidget {
   @override
@@ -11,44 +13,32 @@ class MaterialComponents extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ListItem(title: 'FloatActionButton', page: FloatActionButtonDemo()),
+          ListItem(title: 'ButtonDemo', page: ButtonDemo()),
         ],
       ),
     );
   }
 }
 
-class FloatActionButtonDemo extends StatelessWidget {
+class _WidgetDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FloatingActionButton _floatingActionButton = FloatingActionButton(
-      onPressed: () {},
-      child: Icon(Icons.add),
-      elevation: 0.0,
-      backgroundColor: Colors.black87,
-      // shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-    );
-
-    FloatingActionButton _floatingActionButtonExtend =
-        FloatingActionButton.extended(
-      onPressed: () {},
-      icon: Icon(Icons.add),
-      label: Text('add'),
-    );
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('FloatActionButtonDemo'),
+        title: Text('_WidgetDemo'),
         elevation: 0.0,
       ),
-      floatingActionButton: _floatingActionButton,
-      // 叠加到底部工具栏
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          height: 80.0,
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[],
+            )
+          ],
         ),
-        // 加上缺口
-        shape: CircularNotchedRectangle(),
       ),
     );
   }
