@@ -4,6 +4,9 @@ class FormDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('FormDemo'),
+      ),
       // 使用 Theme 部件来覆盖部分主题设置
       body: Theme(
         // 将其他主题设置 copy 过来
