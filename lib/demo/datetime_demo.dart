@@ -8,29 +8,28 @@ class DateTimeDemo extends StatefulWidget {
 }
 
 class _DateTimeDemoState extends State<DateTimeDemo> {
-
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
 
-  void _selectDate() async {
+  Future<void> _selectDate() async {
     final DateTime date = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime(1900),
       lastDate: DateTime(2100),
     );
-    if(date == null) return;
+    if (date == null) return;
     setState(() {
       selectedDate = date;
     });
   }
 
-  _selectTime() async {
+  Future<void> _selectTime() async {
     final TimeOfDay time = await showTimePicker(
       context: context,
       initialTime: selectedTime,
     );
-    if(time == null) return;
+    if (time == null) return;
     setState(() {
       selectedTime = time;
     });
