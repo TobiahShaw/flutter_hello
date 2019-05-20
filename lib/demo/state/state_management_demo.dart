@@ -16,10 +16,13 @@ class _StateManagementDemoState extends State<StateManagementDemo> {
         title: Text('StateManagementDemo'),
         elevation: 0.0,
       ),
-      body: Center(
-        child: Chip(
-          label: Text('$_count'),
-        ),
+      body: Counter2(
+        count: _count,
+        increaseCount: () {
+          setState(() {
+            _count += 1;
+          });
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -30,6 +33,39 @@ class _StateManagementDemoState extends State<StateManagementDemo> {
           });
           print(_count);
         },
+      ),
+    );
+  }
+}
+
+// 这种方法是重构 StateManagementDemo 部件
+class Counter extends StatelessWidget {
+  final int count;
+
+  Counter({this.count});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Chip(
+        label: Text('$count'),
+      ),
+    );
+  }
+}
+
+class Counter2 extends StatelessWidget {
+  final int count;
+  final VoidCallback increaseCount;
+
+  Counter2({this.count, this.increaseCount});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ActionChip(
+        label: Text('$count'),
+        onPressed: increaseCount,
       ),
     );
   }
