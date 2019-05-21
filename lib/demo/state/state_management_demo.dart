@@ -1,34 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class StateManagementDemo extends StatefulWidget {
-  // StatefulWidget 也是被不可变化的注解标记， 我们要单独设置一个状态
-  @override
-  _StateManagementDemoState createState() => _StateManagementDemoState();
-}
+// class StateManagementDemo extends StatefulWidget {
+//   // StatefulWidget 也是被不可变化的注解标记， 我们要单独设置一个状态
+//   @override
+//   _StateManagementDemoState createState() => _StateManagementDemoState();
+// }
 
-class _StateManagementDemoState extends State<StateManagementDemo> {
-  int _count = 0;
-  increaseCount() {
-    setState(() {
-      _count += 1;
-    });
-    print(_count);
-  }
+// class _StateManagementDemoState extends State<StateManagementDemo> {
+//   int _count = 0;
+//   increaseCount() {
+//     setState(() {
+//       _count += 1;
+//     });
+//     print(_count);
+//   }
 
+//   @override
+//   Widget build(BuildContext context) {
+//     return CounterProvider(
+//       count: _count,
+//       increaseCount: increaseCount,
+//       child: Scaffold(
+//         appBar: AppBar(
+//           title: Text('StateManagementDemo'),
+//           elevation: 0.0,
+//         ),
+//         body: CounterWrapper2(),
+//         floatingActionButton: FloatingActionButton(
+//           child: Icon(Icons.add),
+//           onPressed: increaseCount,
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class StateManagementDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CounterProvider(
-      count: _count,
-      increaseCount: increaseCount,
+    return ScopedModel(
+      model: CounterModel(),
       child: Scaffold(
         appBar: AppBar(
           title: Text('StateManagementDemo'),
           elevation: 0.0,
         ),
-        body: CounterWrapper2(),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: increaseCount,
+        body: ScopedModelDescendant<CounterModel>(
+          builder: (context, _, model) => ActionChip(
+                label: Text('${model.count}'),
+                onPressed: model.increaseCount,
+              ),
+        ),
+        floatingActionButton: ScopedModelDescendant<CounterModel>(
+          rebuildOnChange: false,
+          builder: (context, _, model) => FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: model.increaseCount,
+              ),
         ),
       ),
     );
@@ -102,7 +131,7 @@ class Counter3 extends StatelessWidget {
   }
 }
 
-// inherit widget 多级传递, 其下的小部件都可以直接获取需要的值
+// inherit widget 多级传递, 其下的小部件都可以直接获取需要的值,需要把部件包装起来
 class CounterProvider extends InheritedWidget {
   final int count;
   final VoidCallback increaseCount;
@@ -139,5 +168,16 @@ class Counter4 extends StatelessWidget {
       label: Text('$count'),
       onPressed: increaseCount,
     );
+  }
+}
+
+// 使用scoped model 可以把部件换位 stateless 的
+class CounterModel extends Model {
+  int _count = 0;
+  int get count => _count;
+
+  void increaseCount() {
+    _count += 1;
+    notifyListeners();
   }
 }
