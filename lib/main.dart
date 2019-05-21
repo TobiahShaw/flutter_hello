@@ -4,6 +4,7 @@ import 'demo/bottom_navigation_bar_demo.dart';
 import 'demo/listview_demo.dart';
 import 'demo/basic_demo.dart';
 import 'demo/layout_demo.dart';
+import 'demo/stream/stream.dart';
 import 'demo/view_demo.dart';
 import 'demo/sliver_demo.dart';
 import 'demo/navigator_demo.dart';
@@ -20,7 +21,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: NavigatorDemo(),
       // 不使用home，使用初始路由
-      initialRoute: '/state-management',
+      initialRoute: '/stream',
       // 通过名字路由
       routes: {
         '/': (context) => Home(),
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
         '/form': (context) => FormDemo(),
         '/mdc': (context) => MaterialComponents(),
         '/state-management': (context) => StateManagementDemo(),
+        '/stream': (context) => StreamDemo(),
       },
       theme: ThemeData(
           primarySwatch: Colors.yellow,
