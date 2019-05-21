@@ -21,16 +21,25 @@ class StreamDemoHome extends StatefulWidget {
 
 class _StreamDemoHomeState extends State<StreamDemoHome> {
   StreamSubscription _subscription;
+  StreamController<String> _streamDemo;
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _streamDemo.close();
+  }
 
   @override
   void initState() {
     super.initState();
 
     print('create a stream');
-    Stream<String> _streamDemo = Stream.fromFuture(fetchData());
+    // Stream<String> _streamDemo = Stream.fromFuture(fetchData());
+    _streamDemo = StreamController<String>();
     print('listen a stream');
     _subscription =
-        _streamDemo.listen(onData, onError: onError, onDone: onDone);
+        _streamDemo.stream.listen(onData, onError: onError, onDone: onDone);
   }
 
   Future<String> fetchData() async {
@@ -70,6 +79,10 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
               child: Text('cancel'),
               onPressed: _cancelStream,
             ),
+            FlatButton(
+              child: Text('add'),
+              onPressed: _addDataToStream,
+            ),
           ],
         ),
       ),
@@ -89,5 +102,11 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
   void _cancelStream() {
     print('cancel sub');
     _subscription.cancel();
+  }
+
+  void _addDataToStream() async {
+    print('addDataToStream');
+    String data = await fetchData();
+    _streamDemo.add(data);
   }
 }
