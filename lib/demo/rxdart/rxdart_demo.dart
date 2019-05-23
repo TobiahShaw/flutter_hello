@@ -26,7 +26,12 @@ class _RxDartDemoHomeState extends State<RxDartDemoHome> {
     super.initState();
 
     _textFildSubject = PublishSubject<String>();
-    _textFildSubject.listen(print);
+    _textFildSubject
+    .map((item) => 'item: $item')
+    .where((item) => item.length > 30)
+    // 输出停止1秒后执行上次发射的结果
+    .debounce((_) => TimerStream(true, const Duration(seconds: 1)))
+    .listen(print);
 
     // Observable<String> _observable =
     //     // Observable(Stream.fromIterable(['hello', 'Tobiah']));
