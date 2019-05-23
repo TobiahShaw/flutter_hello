@@ -24,13 +24,27 @@ class _RxDartDemoHomeState extends State<RxDartDemoHome> {
   void initState() {
     super.initState();
 
-    Observable<String> _observable =
-        // Observable(Stream.fromIterable(['hello', 'Tobiah']));
-        // Observable.fromFuture(Future.value('hello ~'));
-        // Observable.fromIterable(['hello', 'Tobiah']);
-        // Observable.just('hello, world');
-        Observable.periodic(new Duration(seconds: 1), (i) => 'hello, $i').take(5);
-    _observable.listen(print);
+    // Observable<String> _observable =
+    //     // Observable(Stream.fromIterable(['hello', 'Tobiah']));
+    //     // Observable.fromFuture(Future.value('hello ~'));
+    //     // Observable.fromIterable(['hello', 'Tobiah']);
+    //     // Observable.just('hello, world');
+    //     Observable.periodic(new Duration(seconds: 1), (i) => 'hello, $i').take(5);
+    // _observable.listen(print);
+
+    // PublishSubject<String> _subject = PublishSubject<String>();
+    // 特殊的subject 会把最后一次数据发射出去
+    // BehaviorSubject<String> _subject = BehaviorSubject<String>();
+    // 发送最后maxSize的事件给所有的监听器，无视监听时间
+    ReplaySubject<String> _subject = ReplaySubject<String>(maxSize: 2);
+    _subject.add('hi');
+    _subject.listen((data) => print('listen 1 : $data'));
+    // PublishSubject时listen2收不到消息
+    _subject.add('hello');
+    _subject.listen((data) => print('listen 2 : ${data.toUpperCase()}'));
+    _subject.add('hola');
+
+    _subject.close();
   }
 
   @override
