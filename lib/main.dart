@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/demo/bloc/bloc_demo.dart';
+import 'package:hello_world/demo/http/http_demo.dart';
 import 'package:hello_world/demo/rxdart/rxdart_demo.dart';
 import 'demo/drawer_demo.dart';
 import 'demo/bottom_navigation_bar_demo.dart';
@@ -23,7 +24,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: NavigatorDemo(),
       // 不使用home，使用初始路由
-      initialRoute: '/bloc',
+      initialRoute: '/http',
       // 通过名字路由
       routes: {
         '/': (context) => Home(),
@@ -35,6 +36,7 @@ class App extends StatelessWidget {
         '/stream': (context) => StreamDemo(),
         '/rxdart': (context) => RxDartDemo(),
         '/bloc': (context) => BlocDemo(),
+        '/http': (context) => HttpDemo(),
       },
       theme: ThemeData(
           primarySwatch: Colors.yellow,
