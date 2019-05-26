@@ -33,6 +33,12 @@ class App extends StatelessWidget {
         Locale('en', 'US'),
         Locale('zh', 'CN'),
       ],
+      // 手动指定语言地区
+      locale: Locale('en', 'US'),
+      // 最终决定使用的语言地区，本方法用于对应用户的语言地区和至此的语言地区
+      localeListResolutionCallback: (List<Locale> locale, Iterable<Locale> supports) {
+        return Locale('zh', 'CN');
+      },
       debugShowCheckedModeBanner: false,
       // home: NavigatorDemo(),
       // 不使用home，使用初始路由
