@@ -22,6 +22,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome>
   AnimationController _animationController;
   Animation _animationSize;
   Animation _animationColor;
+  CurvedAnimation _curve;
 
   @override
   void initState() {
@@ -42,10 +43,10 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome>
     _animationController.addStatusListener((status) {
       print(status);
     });
-
+    _curve = CurvedAnimation(parent: _animationController, curve: Curves.bounceInOut);
     // 与直接设置lowerBound和upperBound相比更为灵活
-    _animationSize = Tween(begin: 32.0, end: 100.0).animate(_animationController);
-    _animationColor = ColorTween(begin: Colors.red[900], end: Colors.red).animate(_animationController);
+    _animationSize = Tween(begin: 32.0, end: 100.0).animate(_curve);
+    _animationColor = ColorTween(begin: Colors.red[900], end: Colors.red).animate(_curve);
   }
 
   @override
