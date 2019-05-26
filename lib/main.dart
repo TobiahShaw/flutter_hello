@@ -17,6 +17,7 @@ import 'demo/form_demo.dart';
 import 'demo/material-components.dart';
 import 'demo/state/state_management_demo.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'demo/i18n/localizations_demo.dart';
 
 void main() => runApp(App());
 
@@ -28,6 +29,8 @@ class App extends StatelessWidget {
       localizationsDelegates: [
          GlobalMaterialLocalizations.delegate,
          GlobalWidgetsLocalizations.delegate,
+         // 加载我们自己的本地化资源
+         TobiahDemoLocalizationsDelegate(),
       ],
       supportedLocales: [
         Locale('en', 'US'),
@@ -37,7 +40,8 @@ class App extends StatelessWidget {
       locale: Locale('en', 'US'),
       // 最终决定使用的语言地区，本方法用于对应用户的语言地区和至此的语言地区
       localeListResolutionCallback: (List<Locale> locale, Iterable<Locale> supports) {
-        return Locale('zh', 'CN');
+        // return Locale('zh', 'CN');
+        return Locale('en', 'US');
       },
       debugShowCheckedModeBanner: false,
       // home: NavigatorDemo(),
