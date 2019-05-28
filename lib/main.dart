@@ -4,6 +4,7 @@ import 'package:hello_world/demo/bloc/bloc_demo.dart';
 import 'package:hello_world/demo/http/http_demo.dart';
 import 'package:hello_world/demo/i18n/i18n_demo.dart';
 import 'package:hello_world/demo/rxdart/rxdart_demo.dart';
+import 'package:hello_world/demo/test/test_demo.dart';
 import 'demo/drawer_demo.dart';
 import 'demo/bottom_navigation_bar_demo.dart';
 import 'demo/listview_demo.dart';
@@ -47,7 +48,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: NavigatorDemo(),
       // 不使用home，使用初始路由
-      initialRoute: '/i18n',
+      initialRoute: '/test',
       // 通过名字路由
       routes: {
         '/': (context) => Home(),
@@ -62,6 +63,7 @@ class App extends StatelessWidget {
         '/http': (context) => HttpDemo(),
         '/animation': (context) => AnimationDemo(),
         '/i18n': (context) => I18NDemo(),
+        '/test': (context) => TestDemo(),
       },
       theme: ThemeData(
           primarySwatch: Colors.yellow,
