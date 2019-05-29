@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class TestDemo extends StatelessWidget {
@@ -29,7 +30,8 @@ class _TestDemoHomeState extends State<TestDemoHome> {
           label: Text('hello'),
         ),
         ActionChip(
-          label: Text('$count'),
+          key: Key('actionChip'),
+          label: Text('$count', key: Key('actionChipLabelText'),),
           onPressed: () {
             setState(() {
               count += 1;
